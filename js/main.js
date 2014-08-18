@@ -2,8 +2,8 @@
 
 // Initialize a few in-memory compliments in case call to Google Docs fails
 var compliments = [
-  "You're the best thing to ever happen to me",
-  "You appreciate a beard like no one else",
+  "She is the best thing to ever happen to me",
+  "She appreciates a beard like no one else I know"
 ];
 
 var backgroundColors = [
@@ -21,23 +21,45 @@ var getCompliments = function() {
   var key = "1DMXkg2PL44_kj-04m8r5NBEf5HmADKunQGbQjAoARXs";
   $.getJSON("https://spreadsheets.google.com/feeds/cells/" + key + "/od6/public/values?alt=json")
   .done(function(data) {
-    console.log(data);
+    compliments = [];
+    data.feed.entry.forEach(function(entry) {
+      var compliment = entry.gs$cell.$t;
+      compliments.push(compliment);
+    });
   }).fail(function() {
-    console.log("error");
-  }).always(function() {
-    console.log("AJAX call complete");
+    console.log("There was an error with the AJAX call");
   });
 };
 
-var setRandomCompliment = function() {
-
+var setCompliment = function() {
+  var compliment = compliments[Math.floor(Math.random() * compliments.length)];
+  $('.compliment').text(compliment);
 };
 
 var setRandomBackground = function() {
   var bgColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
   $('body').css('background-color', bgColor);
 };
-$(document).ready(function(){
+
+var init = function() {
+  getCompliments();
   setRandomBackground();
+  setCompliment();
+};
+
+$(document).ready(function(){
+  init();
+
+  // Set listeners
+  $('.full-width.button.refresh').on('click', function(event) {
+    event.preventDefault();
+    setRandomBackground();
+    setCompliment();
+  });
   
 });
+
+
+
+
+
