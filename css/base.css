@@ -61,6 +61,12 @@
  	.button.full-width.refresh {
  		margin-top: 8%;
  		top: 1000px;
+ 		-webkit-touch-callout: none;
+ 		-webkit-user-select: none;
+ 		-khtml-user-select: none;
+ 		-moz-user-select: none;
+ 		-ms-user-select: none;
+ 		user-select: none;
  	}
 
  	.compliment {
@@ -68,7 +74,7 @@
  		padding-top: 10%;
  		line-height: 100%;
  		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
- 		font-size: 300%;
+ 		font-size: 350%;
  		font-weight: bold;
  		text-align: center;
  	}
