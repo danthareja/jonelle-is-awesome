@@ -77,10 +77,22 @@
  		font-size: 350%;
  		font-weight: bold;
  		text-align: center;
+ 		-webkit-touch-callout: none;
+ 		-webkit-user-select: none;
+ 		-khtml-user-select: none;
+ 		-moz-user-select: none;
+ 		-ms-user-select: none;
+ 		user-select: none;
  	}
 
  	.logo {
  		padding-top: 2%;
+ 		-webkit-touch-callout: none;
+ 		-webkit-user-select: none;
+ 		-khtml-user-select: none;
+ 		-moz-user-select: none;
+ 		-ms-user-select: none;
+ 		user-select: none;
  	}
 
 
