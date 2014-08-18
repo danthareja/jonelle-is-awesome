@@ -16,6 +16,8 @@ var backgroundColors = [
   "#713045"
 ];
 
+var currentCompliment;
+var currentBackgroundColor;
 
 var getCompliments = function() {
   var key = "1DMXkg2PL44_kj-04m8r5NBEf5HmADKunQGbQjAoARXs";
@@ -32,18 +34,36 @@ var getCompliments = function() {
 };
 
 var setCompliment = function() {
-  var compliment = compliments[Math.floor(Math.random() * compliments.length)];
-  $('.compliment').text(compliment);
+  var compliment = getRandom(compliments);
+
+  // Never get the same compliment twice in a row
+  while (compliment === currentCompliment) {
+    compliment = getRandom(compliments);
+  }
+
+  currentCompliment = compliment;
+  $('.compliment').text(currentCompliment);
 };
 
-var setRandomBackground = function() {
-  var bgColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+var setBackground = function() {
+  var bgColor = getRandom(backgroundColors);
+  
+  // Never get the same background twice in a row
+  while (bgColor === currentBackgroundColor) {
+    bgColor = getRandom(backgroundColors);
+  }
+
+  currentBackgroundColor = bgColor;
   $('body').css('background-color', bgColor);
+};
+
+var getRandom = function(array) {
+  return array[Math.floor(Math.random() * array.length)];
 };
 
 var init = function() {
   getCompliments();
-  setRandomBackground();
+  setBackground();
   setCompliment();
 };
 
@@ -53,7 +73,7 @@ $(document).ready(function(){
   // Set listeners
   $('.full-width.button.refresh').on('click', function(event) {
     event.preventDefault();
-    setRandomBackground();
+    setBackground();
     setCompliment();
   });
   
